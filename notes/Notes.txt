@@ -1,0 +1,93 @@
+
+
+——------------------------------Browser Sync--------------------
+
+//Go inside the folder where you want to start browder sync
+
+browser-sync --server --directory --files "**/*"
+
+//To quit
+
+Control lsC
+
+
+—---------------------------------Github------------------------------
+
+//To check the current directory
+pwd
+
+//to see files in that directory
+ls
+
+//To navigate to another folder
+cd
+
+//Go to the Desktop first by cd and then
+//To clone 
+git clone https://github.com/sohammehta95/angular-js-dynamic-webpage.git
+
+
+//To check status
+
+git status
+
+//To add file
+git add .
+///////. means everything //////
+
+
+//To commit Locally
+git commit -m "First Web File"
+
+//To push to Github
+git push
+
+
+----------------------------------—Angular---------------------------
+
+
+Directives – HTML annotations that trigger Javascript behaviors 
+Modules – Where our application components live Controllers – Where we add application behavior Expressions – How values get displayed within the page 
+
+—Angular Directives
+
+
+//Add a module directive (Main)
+ng-app="store"
+
+//Add a controller
+ng-controller="StoreController as store"
+
+//To show if value in json is true
+ng-show="store.product.canPurchase"
+
+//To hide if value in json is true
+ng-hide="store.product.soldOut"
+
+//If there is an array of objects and you need to access them all
+ng-repeat="product in store.products"
+
+//To display image from a json in the controller
+<img ng-src="{{product.images[0].full}}"/>
+
+//Takes an expression to evaluate when clicked
+<a href ng-click=“tab=3”>
+
+//To set initial tab value
+<section ng-init="tab = 1">
+
+//To show a tab selection as active
+<li ng-class="{ active:tab === 2 }">
+///// if tab==2 is true then active is added to the element of class ////
+
+//To show whats written in the form live
+{{review.body}}
+<textarea ng-model="review.body"></textarea>
+
+//To give options in a select element in a form
+ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" 
+
+//To submit a form 
+ng-submit="reviewCtrl.addReview(product)
+
+

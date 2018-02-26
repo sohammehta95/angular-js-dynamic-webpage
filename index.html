@@ -5,91 +5,131 @@
 
 
  <head> 
-<link rel="stylesheet" type="text/css" href="bootstrap.min.css" /> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
 </head>  
 
 
 <body ng-controller="StoreController as store"> 
 
-
-<div ng-repeat="product in store.products |limitTo:1 ">
-
-
-<h1> {{product.name}} </h1> 
-<h2> {{product.price | currency}} </h2> 
-<img ng-src="{{product.images[0].full}}"/>
-<br>
-<button ng-show="product.canPurchase"> Add to Cart </button>
+	<!--  Store Header  -->
+    <header>
+      <h1 class="text-center">Flatlander Crafted Gems</h1>
+      <h2 class="text-center">– an Angular store –</h2>
+    </header>
 
 
+	<!--  Products Container  -->
+	<div class="list-group">
+	<!--  Product Container  -->
+	<div class="list-group-item" ng-repeat="product in store.products |limitTo:1 ">
+		<h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
 
-	<section ng-controller="PanelController as panel">
+
+
+	<!-- Image Gallery  -->
+    <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
+
+        <div class="img-wrap">
+           <img class="img img-responsive center-block" ng-src="{{product.images[gallery.current]}}" />
+        </div>
+
+        <br>
+
+        <div style="margin-left: 20%;">
+        <ul class="img-thumbnails clearfix">
+           <li class="small-image pull-left thumbnail " ng-repeat="image in product.images">
+            	<img style="display: inline-block" class="iimg-fluid" ng-click="gallery.setCurrent(product.images.indexOf(image))" ng-src="{{image}}" width="60" height="45"/>
+            </li>
+         </ul>
+     	</div>
+    </div>
+
+<!-- <button ng-show="product.canPurchase"> Add to Cart </button> -->
+
+
+	<!-- Product Tabs Index -->
+	<section ng-controller="TabController as tab">
 		<ul class="nav nav-pills">
-			<li ng-class="{ active:panel.isSelected(1) }">  
-				<a href ng-click="panel.selectTab(1)" >Description</a> 
+			<li ng-class="{ active:tab.isSet(1) }">  
+				<a href="" ng-click="tab.setTab(1)" >Description</a> 
 			</li > 
-			<li ng-class="{ active:panel.isSelected(2) }">
-			 <a href ng-click="panel.selectTab(2)">Specifications</a> 
+			<li ng-class="{ active:tab.isSet(2) }">
+			 <a href="" ng-click="tab.setTab(2)">Specifications</a> 
 			</li> 
-			<li ng-class="{ active:panel.isSelected(3) }"> 
-				<a href ng-click="panel.selectTab(3)">Reviews</a> 
+			<li ng-class="{ active:tab.isSet(3) }"> 
+				<a href="" ng-click="tab.setTab(3)">Reviews</a> 
 			</li>
 		</ul>
 
+		<!-- Decsription Tab -->
+		<div ng-show="tab.isSet(1)"> 
+			<h4>Description</h4>  
+			<blockquote>{{product.description}}</blockquote>
+		 </div>
 
-	<div class="panel" ng-show="panel.isSelected(1)"> 
-		<h4>Description</h4>  
-		<p>{{product.description}}</p> 
-	 </div>
+		 <!-- Specifications Tab -->
+		 <div ng-show="tab.isSet(2)">
+			<h4>Specifications</h4> 
+			<blockquote>Shine: {{product.shine}}</blockquote> 
+		 </div>
 
-	 <div class="panel" ng-show="panel.isSelected(2)">
-		<h4>Specifications</h4> 
-		<blockquote>{{product.price}}</blockquote> 
-	 </div>
+		<!-- Review Tab -->
+		<div ng-show="tab.isSet(3)">
+			<h4>Reviews</h4>
 
-	<!-- Review Tab -->
-	<div class="panel" ng-show="panel.isSelected(3)">
-		<h4>Reviews</h4>
+			<!-- PREVIOUS REVIEWS -->
+			<ul>
+			<li ng-repeat="review in product.reviews">
+			<blockquote>
+				<strong>{{review.stars}} Stars</strong>
+                  {{review.body}}
+                 <cite class="clearfix">—{{review.author}}</cite>
+			</blockquote> 
+			</li>
+			</ul>
 
-		<!-- PREVIOUS REVIEWS -->
-		<blockquote ng-repeat="review in product.reviews">
+			<!-- Form for Review with Live values -->
+			<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" 
+			ng-submit="reviewCtrl.addReview(product)"> 
 
-			<b>Stars: {{review.stars}}</b> 
-			{{review.body}}  
+				<!--  Live Preview -->
+				<blockquote>
+	                <strong>Stars: {{reviewCtrl.review.stars}}</strong>
+	                {{reviewCtrl.review.body}} 
+	                <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+              	</blockquote>
 
-		</blockquote> 
-		
-		<!-- Formfor Review with that being shown on top -->
-		<b>Stars: {{review.stars}}</b> 
-			{{review.body}}  
-			<cite>by: {{review.author}}</cite>
+              	<!--  Form -->
+              	<fieldset class="form-group">
+					<select ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+						<option value="">Rate the product</option>
+		  			</select>
+	  			</fieldset>
+              	
+              	<fieldset class="form-group">
+	 				<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product" title="Review"> </textarea>
+	 			</fieldset>
 
-		<form name="reviewForm"> 
-				<select ng-model="review.stars">
-					<option value="1">1 star</option>
-					<option value="2">2 stars</option>
-					<option value="3">3 stars</option>
-					<option value="4">4 stars</option>
-					<option value="5">5 stars</option>
-  				</select>
- 				<textarea ng-model="review.body">
- 					
- 				</textarea>
+              	<fieldset class="form-group">
+				<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="soham@email.com" title="Email"/>
+				</fieldset>
+              	
+              	<fieldset class="form-group">
+				<input type="submit" class="btn btn-primary pull-right" value="Submit" />
+				</fieldset>  
 
-				<label>by:</label>
-				<input ng-model="review.author" type="email" />
-
-				<input type="submit" value="Submit" />  
 			</form>
 
+			
+		</div> <!-- Review Tab div over -->
 
-	</div>
+	</section> <!-- Tab control section over -->
 
-	</section>
-</div> 
-<script type="text/javascript" src="angular.min.js"></script>
-<script type="text/javascript" src="app.js"></script>
+</div>  <!-- Product in store.products div over -->
 
+</div> <!-- list group over -->
 </body>  
 
 
