@@ -8,10 +8,17 @@ app.controller('StoreController', function(){
 var gems = [
 { 
 name: 'Dodecahedron', 
-price: 2.95, 
+price: 2., 
 description: 'This is cool',
 canPurchase: true,
-soldOut: true
+soldOut: true ,
+images: [ 
+ {
+ full: 'd1f.png',
+thumb: 'd1t.jpg'  }, 
+{
+full: "d2f.jpg",
+thumb: 'd2t.jpg' } ],
  },
  { 
 name: "Pentagonal Gem", 
