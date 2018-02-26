@@ -47,9 +47,42 @@
 		<blockquote>{{product.price}}</blockquote> 
 	 </div>
 
+	<!-- Review Tab -->
 	<div class="panel" ng-show="panel.isSelected(3)">
 		<h4>Reviews</h4>
-		<blockquote>{{product.canPurchase}}</blockquote> 
+
+		<!-- PREVIOUS REVIEWS -->
+		<blockquote ng-repeat="review in product.reviews">
+
+			<b>Stars: {{review.stars}}</b> 
+			{{review.body}}  
+
+		</blockquote> 
+		
+		<!-- Formfor Review with that being shown on top -->
+		<b>Stars: {{review.stars}}</b> 
+			{{review.body}}  
+			<cite>by: {{review.author}}</cite>
+
+		<form name="reviewForm"> 
+				<select ng-model="review.stars">
+					<option value="1">1 star</option>
+					<option value="2">2 stars</option>
+					<option value="3">3 stars</option>
+					<option value="4">4 stars</option>
+					<option value="5">5 stars</option>
+  				</select>
+ 				<textarea ng-model="review.body">
+ 					
+ 				</textarea>
+
+				<label>by:</label>
+				<input ng-model="review.author" type="email" />
+
+				<input type="submit" value="Submit" />  
+			</form>
+
+
 	</div>
 
 	</section>

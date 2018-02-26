@@ -26,12 +26,11 @@ description: 'This is cool',
 canPurchase: true,
 soldOut: true ,
 images: [ 
- {
- full: 'd1f.png',
-thumb: 'd1t.jpg'  }, 
-{
-full: "d2f.jpg",
-thumb: 'd2t.jpg' } ],
+{ full: 'd1f.png', thumb: 'd1t.jpg' }, 
+{ full: "d2f.jpg", thumb: 'd2t.jpg' } ],
+reviews: [ 
+{ stars: 5, body: "I love this product!",  author: "joe@thomas.com" },  
+{ stars: 1, body: "This product sucks",  author: "tim@hater.com" } ]
  },
  { 
 name: "Pentagonal Gem", 
