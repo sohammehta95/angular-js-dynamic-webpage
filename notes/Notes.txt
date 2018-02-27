@@ -92,4 +92,6 @@ ng-submit="reviewCtrl.addReview(product)
 
 ///// $ means referencing a property from the form ///////
 
-
+// Clean code and add some html to other file
+ng-include = " 'tab.html' "
+/////This will make another call to server to get this file. So its better to use custom directive/////

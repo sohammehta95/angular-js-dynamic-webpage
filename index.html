@@ -23,14 +23,17 @@
 
 	<!--  Products Container  -->
 	<div class="list-group">
+
 	<!--  Product Container  -->
 	<div class="list-group-item" ng-repeat="product in store.products |limitTo:1 ">
-		<h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
 
 
+		<h3>
+			<product-title></product-title>
+		</h3>
 
 	<!-- Image Gallery  -->
-    <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
+	    <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
 
         <div class="img-wrap">
            <img class="img img-responsive center-block" ng-src="{{product.images[gallery.current]}}" />
@@ -46,6 +49,8 @@
          </ul>
      	</div>
     </div>
+
+
 
 <!-- <button ng-show="product.canPurchase"> Add to Cart </button> -->
 
@@ -71,10 +76,7 @@
 		 </div>
 
 		 <!-- Specifications Tab -->
-		 <div ng-show="tab.isSet(2)">
-			<h4>Specifications</h4> 
-			<blockquote>Shine: {{product.shine}}</blockquote> 
-		 </div>
+		 <div ng-show="tab.isSet(2)" product-specs> </div>
 
 		<!-- Review Tab -->
 		<div ng-show="tab.isSet(3)">

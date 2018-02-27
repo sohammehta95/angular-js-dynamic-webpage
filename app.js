@@ -1,6 +1,8 @@
 (function(){ 
+//Module
 var app = angular.module('store', [ ]);
 
+//Controllers
 app.controller('StoreController', function(){  
 	this.products = gems;
 });
@@ -37,6 +39,38 @@ app.controller('GalleryController', function(){
     };
 
   });
+
+//Custom Directives
+//The <product-title is converted to Camel Case
+app.directive('productTitle', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'product-title.html'
+		};  
+});
+
+app.directive('productGallery', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'product-gallery.html'
+		};  
+});
+
+
+app.directive('productTab', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'product-tab.html'
+		};  
+});
+
+app.directive('productSpecs', function(){
+	return {
+		restrict: 'A',
+		templateUrl: 'product-specs.html'
+		};  
+});
+
 
 //Gems object
 
