@@ -90,4 +90,6 @@ ng-options="stars for stars in [5,4,3,2,1]"  title="Stars"
 //To submit a form 
 ng-submit="reviewCtrl.addReview(product)
 
+///// $ means referencing a property from the form ///////
+
 
