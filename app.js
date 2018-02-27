@@ -8,17 +8,7 @@ app.controller('StoreController', function(){
 });
 
 
-  app.controller('TabController', function(){
-    this.tab = 1;
-
-    this.setTab = function(tab){
-      this.tab = tab;
-    };
-
-    this.isSet = function(tab){
-      return (this.tab === tab);
-    };
-  });
+ //app.controller('TabController', function(){ });
 
 app.controller('ReviewController', function(){  
  	this.review = {};
@@ -31,16 +21,10 @@ app.controller('ReviewController', function(){
  	};
 });
 
-app.controller('GalleryController', function(){
-    this.current = 0;
-
-    this.setCurrent = function(index){
-      this.current = index;
-    };
-
-  });
+//app.controller('GalleryController', function(){ });
 
 //Custom Directives
+
 //The <product-title is converted to Camel Case
 app.directive('productTitle', function(){
 	return {
@@ -52,17 +36,51 @@ app.directive('productTitle', function(){
 app.directive('productGallery', function(){
 	return {
 		restrict: 'E',
-		templateUrl: 'product-gallery.html'
-		};  
+		templateUrl: 'product-gallery.html',
+
+		controller:function(){
+			this.current = 0;
+
+    		this.setCurrent = function(imageNumber){
+      		this.current = imageNumber || 0;;
+      		};
+		},
+		controllerAs: 'gallery'
+
+		};
+
+		  
 });
 
 
 app.directive('productTab', function(){
 	return {
 		restrict: 'E',
-		templateUrl: 'product-tab.html'
+		templateUrl: 'product-tab.html',
+
+		controller:function() {
+			this.tab = 1;
+
+    		this.setTab = function(tab){
+      			this.tab = tab;
+    		};
+
+    		this.isSet = function(tab){
+      			return (this.tab === tab);
+    		};
+		},
+		controllerAs: 'tab'
 		};  
 });
+
+// Tabs Data Directives
+app.directive('productDesc', function(){
+	return {
+		restrict: 'A',
+		templateUrl: 'product-desc.html'
+		};  
+});
+
 
 app.directive('productSpecs', function(){
 	return {
@@ -71,6 +89,12 @@ app.directive('productSpecs', function(){
 		};  
 });
 
+app.directive('productReview', function(){
+	return {
+		restrict: 'A',
+		templateUrl: 'product-review.html'
+		};  
+});
 
 //Gems object
 

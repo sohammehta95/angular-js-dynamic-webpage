@@ -1,0 +1,18 @@
+<div ng-show="product.images.length">
+
+        <!-- Big Main Image -->
+        <div class="img-wrap">
+           <img class="img img-responsive center-block" ng-src="{{product.images[gallery.current]}}" />
+        </div>
+
+        <br>
+
+        <!-- Small Thumbnails -->
+        <div style="margin-left: 20%;">
+        <ul class="img-thumbnails clearfix">
+           <li class="small-image pull-left thumbnail " ng-repeat="image in product.images">
+                <img style="display: inline-block" class="iimg-fluid" ng-click="gallery.setCurrent(product.images.indexOf(image))" ng-src="{{image}}" width="60" height="45"/>
+            </li>
+         </ul>
+        </div>
+</div>

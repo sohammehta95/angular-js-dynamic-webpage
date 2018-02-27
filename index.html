@@ -24,115 +24,26 @@
 	<!--  Products Container  -->
 	<div class="list-group">
 
-	<!--  Product Container  -->
-	<div class="list-group-item" ng-repeat="product in store.products |limitTo:1 ">
+		<!--  Product Container  -->
+		<div class="list-group-item" ng-repeat="product in store.products |limitTo:1 ">
 
-
-		<h3>
-			<product-title></product-title>
-		</h3>
-
-	<!-- Image Gallery  -->
-	    <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
-
-        <div class="img-wrap">
-           <img class="img img-responsive center-block" ng-src="{{product.images[gallery.current]}}" />
-        </div>
-
-        <br>
-
-        <div style="margin-left: 20%;">
-        <ul class="img-thumbnails clearfix">
-           <li class="small-image pull-left thumbnail " ng-repeat="image in product.images">
-            	<img style="display: inline-block" class="iimg-fluid" ng-click="gallery.setCurrent(product.images.indexOf(image))" ng-src="{{image}}" width="60" height="45"/>
-            </li>
-         </ul>
-     	</div>
-    </div>
-
-
-
-<!-- <button ng-show="product.canPurchase"> Add to Cart </button> -->
-
-
-	<!-- Product Tabs Index -->
-	<section ng-controller="TabController as tab">
-		<ul class="nav nav-pills">
-			<li ng-class="{ active:tab.isSet(1) }">  
-				<a href="" ng-click="tab.setTab(1)" >Description</a> 
-			</li > 
-			<li ng-class="{ active:tab.isSet(2) }">
-			 <a href="" ng-click="tab.setTab(2)">Specifications</a> 
-			</li> 
-			<li ng-class="{ active:tab.isSet(3) }"> 
-				<a href="" ng-click="tab.setTab(3)">Reviews</a> 
-			</li>
-		</ul>
-
-		<!-- Decsription Tab -->
-		<div ng-show="tab.isSet(1)"> 
-			<h4>Description</h4>  
-			<blockquote>{{product.description}}</blockquote>
-		 </div>
-
-		 <!-- Specifications Tab -->
-		 <div ng-show="tab.isSet(2)" product-specs> </div>
-
-		<!-- Review Tab -->
-		<div ng-show="tab.isSet(3)">
-			<h4>Reviews</h4>
-
-			<!-- PREVIOUS REVIEWS -->
-			<ul>
-			<li ng-repeat="review in product.reviews">
-			<blockquote>
-				<strong>{{review.stars}} Stars</strong>
-                  {{review.body}}
-                 <cite class="clearfix">—{{review.author}} on {{review.createdOn | date}}</cite>
-			</blockquote> 
-			</li>
-			</ul>
-
-			<!-- Form for Review with Live values -->
-			<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product); reviewForm.$setPristine();" novalidate> 
-
-				<!--  Live Preview -->
-				<blockquote>
-	                <strong>Stars: {{reviewCtrl.review.stars}}</strong>
-	                {{reviewCtrl.review.body}} 
-	                <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
-              	</blockquote>
-
-              	<!--  Form -->
-              	<fieldset class="form-group">
-					<select ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" required>
-						<option value="">Rate the product</option>
-		  			</select>
-	  			</fieldset>
-              	
-              	<fieldset class="form-group">
-	 				<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product" title="Review" required>  </textarea>
-	 			</fieldset>
-
-              	<fieldset class="form-group">
-					<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="soham@email.com" title="Email" required/>
-				</fieldset>
-              	
-              	<fieldset class="form-group">
-              		<!--<div> Review Form is {{reviewForm.$valid}} </div>-->
-					<input type="submit" class="btn btn-primary pull-right" value="Submit" />
-				</fieldset>  
-
-			</form>
 
 			
-		</div> <!-- Review Tab div over -->
+			<product-title></product-title>
+				
 
-	</section> <!-- Tab control section over -->
+			<!-- Image Gallery  -->
+			<product-gallery></product-gallery>
 
-</div>  <!-- Product in store.products div over -->
 
-</div> <!-- list group over -->
+			<!-- Product Tabs Index -->
+			<product-tab></product-tab>
+
+		</div> 
+
+	</div> <!-- list group over -->
+
+	
 </body>  
 
 
