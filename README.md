@@ -1,4 +1,4 @@
-#Angular-JS Dynamic-Webpage-Gem-Store
+# Angular-JS Dynamic-Webpage-Gem-Store
 
 https://sohammehta95.github.io/angular-js-dynamic-webpage/
 
