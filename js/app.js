@@ -8,7 +8,7 @@ app.controller('StoreController', ['$http',function($http){
 
 	storevar.products = [];
 
-	$http.get('/json/products.json').success(function(data){
+	$http.get('json/products.json').success(function(data){
 		storevar.products = data;
 	});
 }]);
