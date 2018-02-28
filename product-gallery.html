@@ -2,17 +2,17 @@
 
         <!-- Big Main Image -->
         <div class="img-wrap">
-           <img class="img img-responsive center-block" ng-src="{{product.images[gallery.current]}}" />
+           <img ng-src="{{product.images[gallery.current]}}" class="img-thumbnail center-block"/>
         </div>
 
         <br>
 
         <!-- Small Thumbnails -->
-        <div class="centered">
+
         <ul class="img-thumbnails clearfix">
-           <li class="small-image pull-left thumbnail " ng-repeat="image in product.images">
-                <img class="centered" ng-click="gallery.setCurrent(product.images.indexOf(image))" ng-src="{{image}}" width="60" height="45"/>
+           <li class="small-image pull-left thumbnail"  ng-repeat="image in product.images">
+                <img ng-click="gallery.setCurrent(product.images.indexOf(image))" ng-src="{{image}}"/>
             </li>
          </ul>
-        </div>
+
 </div>

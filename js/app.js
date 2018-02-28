@@ -33,7 +33,7 @@ app.controller('ReviewController', function(){
 //All Products directives in product.js
 
 
-//Gems object in product.json
+//Gems object in products.json
 
   
 })();
