@@ -7,8 +7,7 @@ app.controller('StoreController', ['$http',function($http){
 	var storevar = this;
 
 	storevar.products = [];
-	var path = {{ site.baseurl }} + '/json/products.json';
-	$http.get('path').success(function(data){
+	$http.get('https://sohammehta95.github.io/angular-js-dynamic-webpage/json/products.json').success(function(data){
 		storevar.products = data;
 	});
 }]);
