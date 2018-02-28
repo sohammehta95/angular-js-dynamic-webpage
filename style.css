@@ -5,3 +5,5 @@
 .ng-valid.ng-dirty { 
 	border-color: #78FA89;
 } 
+
+.centered {margin-right: 50%; margin-left: 20%;}

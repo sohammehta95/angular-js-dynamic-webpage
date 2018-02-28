@@ -8,10 +8,10 @@
         <br>
 
         <!-- Small Thumbnails -->
-        <div style="margin-left: 20%;">
+        <div class="centered">
         <ul class="img-thumbnails clearfix">
            <li class="small-image pull-left thumbnail " ng-repeat="image in product.images">
-                <img style="display: inline-block" class="iimg-fluid" ng-click="gallery.setCurrent(product.images.indexOf(image))" ng-src="{{image}}" width="60" height="45"/>
+                <img class="centered" ng-click="gallery.setCurrent(product.images.indexOf(image))" ng-src="{{image}}" width="60" height="45"/>
             </li>
          </ul>
         </div>
